@@ -1,26 +1,55 @@
-class Solution {
-    public int findCircleNum(int[][] isConnected) {
+// class Solution {
+//     public int findCircleNum(int[][] isConnected) {
+//         int n = isConnected.length;
+//         boolean vis[] = new boolean[n];
+//         int count = 0;
+//         for (int i = 0; i < n; i++) {
+
+//             if (vis[i] != true) {
+//                 count++;
+//                 dfsutil(isConnected, i, vis);
+//             }
+//         }
+//         return count;
+//     }
+//     public static void dfsutil(int isConnected[][], int n, boolean vis[]) {
+//         vis[n] = true;
+//         for (int i = 0; i < isConnected.length; i++) {
+//             if (isConnected[n][i] == 1 && !vis[i]) {
+//                 dfsutil(isConnected, i, vis);
+//             }
+//         }
+
+//     }
+// }
+class Solution{
+    public int findCircleNum(int [][]isConnected){
         int n = isConnected.length;
         boolean vis[] = new boolean[n];
-        int count = 0;
-        for (int i = 0; i < n; i++) {
-
-            if (vis[i] != true) {
+        int count=0;
+        for(int i =0; i<isConnected.length ; i++){
+            if(vis[i]!=true){
                 count++;
-                dfsutil(isConnected, i, vis);
+                bfs(isConnected , i , vis);
             }
         }
-        return count;
-
+        return count; 
     }
+    public static void bfs(int [][] isConnected , int i , boolean vis[] ){
+        int n = isConnected.length;
+        vis[i]=true;
+         Queue<Integer> q = new LinkedList<>();
+         q.add(i);
 
-    public static void dfsutil(int isConnected[][], int n, boolean vis[]) {
-        vis[n] = true;
-        for (int i = 0; i < isConnected.length; i++) {
-            if (isConnected[n][i] == 1 && !vis[i]) {
-                dfsutil(isConnected, i, vis);
+        while(q.size()>0){
+            int front = q.remove();
+            for(int j =0 ; j<n ; j++){
+                if(isConnected[front][j]==1 && vis[j]!=true){
+                    q.add(j);
+                    vis[j]=true;
+                }
             }
         }
-
+        
     }
 }
