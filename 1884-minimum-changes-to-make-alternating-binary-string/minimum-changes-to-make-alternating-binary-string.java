@@ -1,27 +1,26 @@
 class Solution {
     public int minOperations(String s) {
-        int startWith0 = helper(s, '0');
-        int startWith1 = helper(s, '1');
-        return Math.min(startWith0, startWith1);
+        int a = minHelper(s , '1');
+        int b = minHelper(s , '0');
+        return Math.min(a , b);
     }
-
-    public int helper(String s, char start) {
-        int count = 0;
-
-        for (int i = 0; i < s.length(); i++) {
-            char expected;
-
-            if (i % 2 == 0) {
-                expected = start;
-            } else {
-                expected = (start == '0') ? '1' : '0';
+    public static int minHelper(String s , char ch){
+        int count =0;
+        for(int i=0 ; i<s.length() ;i++ ){
+            char exp;
+            if(i%2==0){
+                exp = ch;
+            }else{
+                if(ch=='0'){
+                    exp = '1';
+                }else{
+                    exp ='0';
+                }
             }
-
-            if (s.charAt(i) != expected) {
+            if(exp!=s.charAt(i)){
                 count++;
             }
         }
-
         return count;
     }
 }
