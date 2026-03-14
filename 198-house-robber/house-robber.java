@@ -20,9 +20,6 @@
 class Solution {
     public int rob(int[] nums) {
         int n = nums.length;
-        if(n==2){
-            return Math.max(nums[0] , nums[1]);
-        }
         if(n==1){
             return nums[0];
         }
@@ -33,10 +30,5 @@ class Solution {
             dp[i]=Math.max(dp[i-1] , dp[i-2]+nums[i]);
         }
         return dp[n-1];
-        // int ans = Integer.MIN_VALUE;
-        // for(int i =0; i<n ; i++){
-        //     ans = Math.max(ans , dp[i]);
-        // }
-        // return ans;
     }
 }
