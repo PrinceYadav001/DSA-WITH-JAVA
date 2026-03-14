@@ -32,10 +32,11 @@ class Solution {
         for(int i =2 ; i<n ; i++){
             dp[i]=Math.max(dp[i-1] , dp[i-2]+nums[i]);
         }
-        int ans = Integer.MIN_VALUE;
-        for(int i =0; i<n ; i++){
-            ans = Math.max(ans , dp[i]);
-        }
-        return ans;
+        return dp[n-1];
+        // int ans = Integer.MIN_VALUE;
+        // for(int i =0; i<n ; i++){
+        //     ans = Math.max(ans , dp[i]);
+        // }
+        // return ans;
     }
 }
