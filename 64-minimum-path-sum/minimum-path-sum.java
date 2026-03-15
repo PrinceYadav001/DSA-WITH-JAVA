@@ -29,7 +29,15 @@
 
 
 class Solution {
-    public int minPathSum(int[][] arr) {
+     public int minPathSum(int[][] arr) {
+        int dp[][] = new int[arr.length][arr[0].length];
+        for(int i =0 ; i<arr.length ; i++){
+            Arrays.fill(dp[i] , -1 );
+        }
+        return minPath(arr , 0 , 0 , dp);
+        // return minPathTabulation(arr);
+    }
+    public int minPathTabulation(int[][] arr) {
        int n = arr.length;
        int m = arr[0].length;
        int dp[][] = new int[n][m];
@@ -46,5 +54,19 @@ class Solution {
         }
        }
        return dp[n-1][m-1];
+    }
+    public static int minPath(int arr[][] , int i ,  int j  ,int dp[][] ){
+        if(i==arr.length-1 && j == arr[0].length-1 ){
+            return arr[i][j];
+        }
+        if(i>=arr.length || j>=arr[0].length){
+            return Integer.MAX_VALUE;
+        }
+        if(dp[i][j]!=-1){
+            return dp[i][j];
+        }
+        int a = minPath(arr , i+1 , j , dp);
+        int b = minPath(arr , i, j+1 , dp);
+        return dp[i][j]= arr[i][j]+Math.min(a, b);
     }
 }
